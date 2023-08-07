@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		int sum = 0;
+
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+		int N = sc.nextInt();
 		String str = sc.next();
-		String[] strArr = str.split("");
-		int res = 0;
-		for(int i = 0; i < n; i++) {
-			res += Integer.parseInt(strArr[i]);
-		}
 		
-		System.out.println(res);
+		for(int i = 0; i < N; i++) {
+			sum += Integer.parseInt(str.charAt(i)+"");
+		}
+		System.out.println(sum);
 	}
 }
