@@ -11,25 +11,28 @@ public class Main {
 		for (int i = 0; i < N; i++) {
 			score[i] = sc.nextInt();
 		}
+        
+		int[] res = new int[N];
+		res = countingSort(score);
 
-		selectionSort(score);
-
-		System.out.print(score[N - k]);
+		System.out.print(res[N - k]);
 	}
 
-	public static int[] selectionSort(int[] arr) {
+	public static int[] countingSort(int[] arr) {
 		int N = arr.length;
-		for (int i = 0; i < N-1; i++) {
-			int minIdx = i;
-			for(int j = i+1; j < N; j++) {
-				if(arr[j] < arr[minIdx]) {
-					minIdx = j;
-				}
-			}
-			int temp = arr[i];
-			arr[i] = arr[minIdx];
-			arr[minIdx] = temp;
+		int[] count = new int[10001];
+		for (int i = 0; i < N; i++) {
+			count[arr[i]]++;
 		}
-		return arr;
+		for (int i = 0; i < count.length-1; i++) {
+			count[i+1] += count[i];
+		}
+		int[] sortArr = new int[N];
+		for (int i = N - 1; i >= 0; i--) {
+			sortArr[--count[arr[i]]] = arr[i];
+		}
+
+		return sortArr;
+
 	}
 }
