@@ -6,79 +6,67 @@ public class Solution {
 
 		int T = sc.nextInt();
 
-		for (int testcase = 1; testcase <= T; testcase++) {
+		for (int tc = 1; tc <= T; tc++) {
+			int N = sc.nextInt();
+
+			char[][] grid = new char[N][N];
 
 			// 입력
-			int N = sc.nextInt();
-			char[][] str = new char[N][N];
-
-			for (int r = 0; r < N; r++) {
-				String strarr = sc.next();
-				str[r] = strarr.toCharArray();
+			for (int i = 0; i < N; i++) {
+				String str = sc.next();
+				for (int j = 0; j < N; j++) {
+					grid[i][j] = str.charAt(j); // String으로 입력받고 chatAt으로 한글자씩 쪼개서 배열에 저장
+				}
 			}
 
-			// 돌이 다섯 개 이상 연속한 곳이 있으면 yes = 1;
-			int yes = 0;
+			int x = 0, y = 0; // 현재 위치
+			int nx = 0, ny = 0; // 다음 위치
 
-			// 행
-			for (int r = 0; r < N; r++) {
-				for (int c = 0; c < N; c++) {
-					if (str[r][c] == 'o') { // 행에서 o을 발견했으면 그 다음 확인할 수 있는 공간이 4개가 남았는지 확인부터 먼저 함.
-						if (N - c >= 5) {
-							if (str[r][c + 1] == 'o' && str[r][c + 2] == 'o' && str[r][c + 3] == 'o'
-									&& str[r][c + 4] == 'o') {
-								yes = 1;
+			// 4방탐색 : 왼쪽위, 왼쪽, 왼쪽아래, 아래
+			int[] dx = { -1, 0, 1, 1 };
+			int[] dy = { -1, -1, -1, 0 };
+
+			int count = 0; // 돌의 개수를 세는 변수
+			boolean omok = false; // 오목 유효 여부
+
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					if (grid[i][j] == 'o') { // 만약 'o'를 만나면
+						x = i; // 현재 좌표를 저장
+						y = j;
+						// 4방탐색
+						for (int d = 0; d < 4; d++) {
+							count = 0; // 잊지말자..새로운 방향 탐색할 때마다 이전까지 만난 돌의 개수를 0으로 초기화!
+							nx = x + dx[d]; // 다음 위치 탐색
+							ny = y + dy[d];
+
+							// 다음 위치가 배열 내에 존재하고 'o'를 만난다면
+							while (nx >= 0 && nx < N && ny >= 0 && ny < N && grid[nx][ny] == 'o') {
+								count++; // 돌의 개수 카운트
+
+								nx = nx + dx[d]; // 같은 방향으로 계속 진행
+								ny = ny + dy[d];
+
+								if (count == 4) {
+									omok = true;
+									break;
+								}
+
 							}
 						}
 					}
 				}
 			}
 
-			// 열
-			for (int c = 0; c < N; c++) {
-				for (int r = 0; r < N; r++) {
-					if (str[r][c] == 'o') { // 열에서 o을 발견했으면 그 다음 확인할 수 있는 공간이 4개가 남았는지 확인부터 먼저 함.
-						if (N - r >= 5) {
-							if (str[r + 1][c] == 'o' && str[r + 2][c] == 'o' && str[r + 3][c] == 'o'
-									&& str[r + 4][c] == 'o') {
-								yes = 1;
-							}
-						}
-					}
-				}
-			}
-
-			// 대각선
-			for (int r = 0; r < N; r++) {
-				for (int c = 0; c < N; c++) {
-
-					if (str[r][c] == 'o') { // 왼쪽 위에서 오른쪽 아래로 내려가는 대각선
-						if (N - r >= 5 && N - c >= 5) { 
-							if (str[r + 1][c + 1] == 'o' && str[r + 2][c + 2] == 'o' && str[r + 3][c + 3] == 'o'
-									&& str[r + 4][c + 4] == 'o') {
-								yes = 1;
-							}
-						}
-					}
-
-					if (str[r][c] == 'o') { // 오른쪽 위에서 왼쪽 아래로 내려가는 대각선
-						if (N - r >= 5 && c >= 4) {
-							if (str[r + 1][c - 1] == 'o' && str[r + 2][c - 2] == 'o' && str[r + 3][c - 3] == 'o'
-									&& str[r + 4][c - 4] == 'o') {
-								yes = 1;
-							}
-						}
-					}
-
-				}
-			}
-
-			if (yes == 1) {
-				System.out.println("#" + testcase + " YES");
+			// 츌력
+			if (omok) {
+				System.out.println("#" + tc + " YES");
 			} else {
-				System.out.println("#" + testcase + " NO");
+				System.out.println("#" + tc + " NO");
 			}
 
 		}
 	}
 }
+//오목은 방향을 계속 돌리면서 탐색하다가 조건 충족시 그 방향으로 쭉 가는 거고
+//달팽이는 그 방향으로 가다가 조건 충족 안하면 방향을 바꾸는 거고!
