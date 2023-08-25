@@ -24,14 +24,14 @@ public class Solution {
 			// 연속된 0의 개수 구하기
 			int count = 0; // 연속된 0의 개수
 			for (int i = 0; i < N; i++) {
-				if (city[i] == 1) { // 1이 나오거나 배열의 끝에 이르렀다면
+				if (city[i] == 1) { // 1이 나오면
 					ans += count / D; // 연속된 0의 개수를 이동제한 거리 D로 나누어 ans에 더한다.
 					count = 0; // 그리고 다시 연속된 0의 개수를 저장하는 count 변수를 초기화시킨다
 					continue;
 				}
 				count++;
 			}
-			ans += count / D;
+			ans += count / D; //배열의 끝에 이르렀을 때까지 1이 안나왔을 경우도 있으므로 배열이 끝날때까지 센 0의 개수도 계산해준다.
 			
 
 			System.out.println("#" + tc + " " + ans);
