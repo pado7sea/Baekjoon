@@ -6,8 +6,9 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int[][] grid = new int[101][101]; // 도화지
-
+		int[][] grid = new int[103][103]; 
+		// 도화지(원래라면 도화지 배열의 크기 101)
+		// 한칸씩 더 크게 만들었으므로 도화지 배열 끝에 색종이가 있는 경우를 따로 생각하지 않아도 된다.
 		int T = Integer.parseInt(br.readLine()); // 색종이의 수
 		for (int tc = 1; tc <= T; tc++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -17,7 +18,7 @@ public class Main {
 			// 색종이 범위만큼 1로 칠한다.
 			for (int i = a; i < a + 10; i++) {
 				for (int j = b; j < b + 10; j++) {
-					grid[i][j] = 1;
+					grid[i+1][j+1] = 1;
 				}
 			}
 		}
@@ -34,11 +35,8 @@ public class Main {
 					for (int d = 0; d < 4; d++) {
 						int nx = i + dx[d];
 						int ny = j + dy[d];
-						// 배열 내에 있고 0이면 테두리이므로 카운트를 증가시킨다.
-						if (nx >= 1 && nx <= 100 && ny >= 1 && ny <= 100 && grid[nx][ny] == 0)
-							count++;
-						// 만약 1이 도화지의 끝선에 존재한다면 탐색하는 범위가 배열의 바깥이 될것이다. 이것도 역시 테두리다. 
-						else if (nx < 1 || nx > 100 || ny < 1 || ny > 100)
+						// 0이면 테두리이므로 카운트를 증가시킨다.
+						if (grid[nx][ny] == 0)
 							count++;
 					}
 				}
