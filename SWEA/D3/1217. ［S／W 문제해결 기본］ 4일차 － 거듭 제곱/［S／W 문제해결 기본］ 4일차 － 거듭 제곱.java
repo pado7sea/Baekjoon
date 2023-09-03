@@ -1,29 +1,33 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Solution {
-
-	public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-		for (int t = 1; t <= 10; t++) {
-			int tc = sc.nextInt();
-			int N = sc.nextInt();
-			int M = sc.nextInt();
+	static int N;
+	static int M;
+	static int res;
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = 10;
+		for (int tc = 1; tc <= T; tc++) {
+			String dummy = br.readLine();
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			N = Integer.parseInt(st.nextToken());
+			M = Integer.parseInt(st.nextToken());
+			res = 1;
 			
-			System.out.println("#" + tc + " " + power(N,M));
+			function(0);
 
+			System.out.println("#" + tc + " " + res);
 		}
+	}// main
 
-	}
-	
-	public static int power(int N, int M) {
-		// 1. 기본파트
-		if(M == 0) {
-			return 1;
+	public static void function(int count) {
+
+		if(count == M) {
+			return;
 		}
-		// 2. 재귀파트 
-		N *= power(N, M-1);
-		
-		return N;
+		res = res * N;
+		function(count+1);
 	}
 }
