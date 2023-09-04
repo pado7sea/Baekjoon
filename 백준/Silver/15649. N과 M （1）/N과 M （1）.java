@@ -1,18 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
     static int N;             // 전체 자연수의 범위
     static int M;             // 선택할 자연수의 개수
     static int arr[];         // 선택한 자연수를 저장하는 배열
-    static boolean check[];   // 자연수의 사용 여부를 체크하는 배열
+    static boolean check[];   // 자연수 사용 여부를 체크하는 배열
 
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         // 입력 받기
-        N = sc.nextInt();   // 전체 자연수의 범위
-        M = sc.nextInt();   // 선택할 자연수의 개수
+        N = Integer.parseInt(st.nextToken());   // 전체 자연수의 범위
+        M = Integer.parseInt(st.nextToken());   // 선택할 자연수의 개수
 
         // 배열 초기화
         arr = new int[M];           // M개의 자연수를 저장할 배열 초기화
