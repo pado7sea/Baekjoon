@@ -23,14 +23,16 @@ public class Solution {
 			}
 
 			min = Integer.MAX_VALUE;
-			powerset(0, 0);
+			powerset(0, 0, 0);
 			System.out.println("#" + tc + " " + (min - B));
 
 		} // tc
 
 	}// main
 
-	public static void powerset(int idx, int currentHeight) {
+	// currentHeight : 현재 직원들의 키의 합
+	// remainHeight : 아직 남아있는 직원들의 키의 합
+	public static void powerset(int idx, int currentHeight, int remainHeight) {
 		// 기저파트
 		if (idx == N) {
 
@@ -42,8 +44,8 @@ public class Solution {
 
 		}
 		// 재귀파트
-		powerset(idx + 1, currentHeight + heights[idx]); // 현재 직원 추가해서 재귀호출
-		powerset(idx + 1, currentHeight); // 현재 직원 추가 안하고 재귀호출
+		powerset(idx + 1, currentHeight + heights[idx], remainHeight - heights[idx]); // 현재 직원 추가해서 재귀호출
+		powerset(idx + 1, currentHeight, remainHeight - heights[idx]); // 현재 직원 추가 안하고 재귀호출
 
 	}
 }
