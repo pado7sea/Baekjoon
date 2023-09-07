@@ -37,7 +37,7 @@ public class Main {
 		visited = new int[N + 1];
 		count = 1;
 
-		// 정렬 : 정점 번호를 내림차순으로 반복
+		// 정렬 : 정점 번호를 내림차순으로 방문
 		for (int i = 1; i <= N; i++) {
 			Collections.sort(graph[i], Collections.reverseOrder());
 		}
@@ -49,7 +49,7 @@ public class Main {
 		for (int i = 1; i <= N; i++) {
 			sb.append(visited[i]).append("\n"); // 시작 정점 R에서 도달한 정점은 해당 정점 번호 출력
 		}
-		System.out.println(sb.toString());
+		System.out.println(sb);
 	}
 
 	// 깊이 우선 탐색(DFS) 함수
