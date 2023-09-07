@@ -10,9 +10,10 @@ public class Main {
 	static int count; // 방문 순서
 
 	public static void main(String[] args) throws Exception {
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		
 		int N = Integer.parseInt(st.nextToken()); // 정점의 수
 		int M = Integer.parseInt(st.nextToken()); // 간선의 수
 		int R = Integer.parseInt(st.nextToken()); // 시작 정점
@@ -46,8 +47,9 @@ public class Main {
 
 		// 결과 출력
 		for (int i = 1; i <= N; i++) {
-			System.out.println(visited[i]); // 시작 정점 R에서 도달한 정점은 해당 정점 번호 출력
+			sb.append(visited[i]).append("\n"); // 시작 정점 R에서 도달한 정점은 해당 정점 번호 출력
 		}
+		System.out.println(sb.toString());
 	}
 
 	// 깊이 우선 탐색(DFS) 함수
