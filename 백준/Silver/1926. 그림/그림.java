@@ -17,11 +17,11 @@ public class Main {
 		StringTokenizer st;
 
 		st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken()); // 배추밭 가로길이
-		M = Integer.parseInt(st.nextToken()); // 배추밭 세로길이
+		N = Integer.parseInt(st.nextToken()); // 그림 세로길이
+		M = Integer.parseInt(st.nextToken()); // 그림 가로길이
 
-		graph = new int[N][M]; // 그래프구조를 위한 배열 초기화
-		visited = new boolean[N][M]; // 방문 여부 체크 배열 초기화
+		graph = new int[N][M]; // 도화지 배열
+		visited = new boolean[N][M]; // 방문 여부 체크 배열
 
 		// 그래프 배열에 그림들의 위치 입력
 		for (int i = 0; i < N; i++) {
@@ -48,7 +48,6 @@ public class Main {
 				}
 			}
 		}
-
 		System.out.println(count+"\n"+max);
 	}// main
 
