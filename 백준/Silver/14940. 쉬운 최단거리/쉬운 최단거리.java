@@ -38,8 +38,6 @@ public class Main {
 				}
 			}
 		}
-		// 시작 지점의 큐에 추가하고 거리를 0으로 설정
-
 		
 		bfs(x,y);
 		for (int i = 0; i < n; i++) {
@@ -72,6 +70,5 @@ public class Main {
 				}
 			}
 		}
-
 	}
 }
