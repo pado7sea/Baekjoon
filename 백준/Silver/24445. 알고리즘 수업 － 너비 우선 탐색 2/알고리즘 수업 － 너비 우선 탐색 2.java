@@ -16,6 +16,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
 		N = Integer.parseInt(st.nextToken()); // 정점의 수
@@ -51,8 +52,9 @@ public class Main {
 
 		// 방문 순서 출력
 		for (int i = 1; i <= N; i++) {
-			System.out.println(visited[i]);
+			sb.append(visited[i]).append("\n");
 		}
+		System.out.println(sb);
 
 	}// main
 
