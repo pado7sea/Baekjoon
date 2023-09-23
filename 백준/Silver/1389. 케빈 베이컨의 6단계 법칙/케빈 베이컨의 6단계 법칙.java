@@ -66,13 +66,14 @@ public class Main {
             }
         }
 
+		// 케빈 베이컨 수는 깊이의 합임
         int kevinBacon = 0;
 
         for (int i = 1; i <= N; i++) {
-            if (i == start) { // 시작 노드의 경우 제외
+            if (i == start) { // 시작 노드의 경우 깊이의 합에서 제외
                 continue;
             }
-            kevinBacon += visited[i]; // 케빈 베이컨 수를 합산
+            kevinBacon += visited[i]; // 깊이를 합산
         }
         return kevinBacon;
     }
