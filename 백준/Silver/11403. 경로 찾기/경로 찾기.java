@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
 
 		int N = Integer.parseInt(br.readLine());
@@ -48,12 +49,14 @@ public class Main {
 
 				// 간선이 존재하지 않아 dist배열도 갱신되지 않은 경우
 				if (dist[i][j] == 987654) {
-					System.out.print("0 ");
+					sb.append(0).append(" ");
 				} else {
-					System.out.print("1 ");
+					sb.append(1).append(" ");
 				}
 			}
-			System.out.println();
+			sb.append("\n");
 		}
+		
+		System.out.print(sb);
 	}
 }
