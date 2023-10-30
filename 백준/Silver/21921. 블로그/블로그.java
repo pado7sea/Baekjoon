@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
 
 		st = new StringTokenizer(br.readLine());
@@ -44,17 +45,17 @@ public class Main {
 				maxSum = sum;
 				count = 1;
 			}
-			
+
 			// 현재 최대 부분합이랑 같은 부분합이 발생하면 카운트 증가
-			else if(maxSum == sum) {
+			else if (maxSum == sum) {
 				count++;
 			}
 		}
-		if(maxSum==0) {
+		if (maxSum == 0) {
 			System.out.println("SAD");
 			return;
 		}
-		System.out.println(maxSum);
-		System.out.println(count);
+		sb.append(maxSum).append("\n").append(count);
+		System.out.println(sb);
 	}
 }
