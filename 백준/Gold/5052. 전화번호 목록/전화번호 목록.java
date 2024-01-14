@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,6 +18,7 @@ public class Main {
                 String num = br.readLine();
                 if (!root.insert(num)) {
                     isAnswer = false;
+                    // break; 여기 break문 넣으면 런타임에러(NullPointer) 난다.
                 }
             }
             System.out.println(isAnswer ? "YES" : "NO");
@@ -62,7 +61,6 @@ class TrieNode {
                 return false;
             }
         }
-
 
         current.isEndOfWord = true;
         return true;
